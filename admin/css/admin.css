@@ -1,0 +1,85 @@
+/* ============================================================
+   AARUSH DESIGNER — ADMIN PANEL STYLES
+   Used by admin/html/login.html and admin/html/dashboard.html
+   ============================================================ */
+
+/* ---------- Login page ---------- */
+.login-body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.login-card { width: 100%; max-width: 400px; padding: 2.6rem; }
+.login-mark { font-family: var(--font-display); font-size: 1.6rem; text-align: center; margin-bottom: 0.4rem; }
+.login-sub { text-align: center; font-size: var(--fs-small); color: var(--text-muted); margin-bottom: 2rem; }
+.login-error {
+  display: none; background: rgba(180,70,70,0.1); border: 1px solid rgba(180,70,70,0.4);
+  color: #d99; padding: 0.8rem 1rem; border-radius: var(--radius-sm); font-size: var(--fs-small);
+  margin-bottom: 1.4rem;
+}
+
+/* ---------- Auth loading state ---------- */
+.auth-loading { min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 1rem; flex-direction: column; }
+.admin-shell { display: none; min-height: 100vh; }
+body.is-authenticated .admin-shell { display: flex; }
+body.is-authenticated .auth-loading { display: none; }
+
+/* ---------- Sidebar ---------- */
+.admin-sidebar {
+  width: 240px; flex-shrink: 0; background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  display: flex; flex-direction: column; padding: 1.6rem 1.2rem;
+  position: sticky; top: 0; height: 100vh;
+}
+.admin-logo { font-family: var(--font-display); font-size: 1.25rem; padding: 0.6rem 0.6rem 1.8rem; }
+.admin-logo span { color: var(--text-muted); }
+.admin-nav { display: flex; flex-direction: column; gap: 0.3rem; flex-grow: 1; }
+.admin-nav a {
+  display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm); font-size: var(--fs-small); color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+.admin-nav a i { width: 16px; text-align: center; color: var(--text-muted); }
+.admin-nav a:hover { background: var(--bg-card); color: var(--text-primary); }
+.admin-nav a.is-active { background: #fff; color: #050505; }
+.admin-nav a.is-active i { color: #050505; }
+.admin-logout {
+  display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 0.9rem;
+  font-size: var(--fs-small); color: var(--text-secondary); border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+.admin-logout:hover { background: var(--bg-card); color: #fff; }
+
+/* ---------- Main content ---------- */
+.admin-main { flex-grow: 1; padding: 2.2rem clamp(1.5rem, 3vw, 3rem); max-width: 100%; overflow-x: hidden; }
+.admin-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+.admin-topbar h1 { font-size: 1.7rem; }
+.admin-email-chip {
+  display: flex; align-items: center; gap: 0.6rem; font-size: var(--fs-small); color: var(--text-secondary);
+  border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: var(--radius-full);
+}
+
+/* ---------- Stat cards ---------- */
+.stat-card { padding: 1.6rem; }
+.stat-card__label { font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.stat-card__value { font-family: var(--font-display); font-size: 2.4rem; margin-top: 0.5rem; }
+
+/* ---------- Data panels / tables ---------- */
+.admin-panel { padding: 0; overflow: hidden; margin-top: 2.5rem; }
+.admin-panel__head { padding: 1.4rem 1.6rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; }
+.admin-panel__head h3 { font-size: 1.2rem; }
+.admin-table-wrap { overflow-x: auto; }
+table.admin-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+table.admin-table th {
+  text-align: left; font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-muted); padding: 0.9rem 1.6rem; border-bottom: 1px solid var(--border-color); white-space: nowrap;
+}
+table.admin-table td {
+  padding: 1rem 1.6rem; font-size: var(--fs-small); color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color); vertical-align: top;
+}
+table.admin-table tr:last-child td { border-bottom: none; }
+table.admin-table td a { color: var(--text-primary); text-decoration: underline; }
+.truncate-cell { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.empty-row { text-align: center; color: var(--text-muted); padding: 2.4rem !important; }
+
+@media (max-width: 860px) {
+  .admin-sidebar { display: none; }
+  .admin-main { padding: 1.5rem; }
+}
