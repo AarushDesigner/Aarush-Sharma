@@ -1,0 +1,51 @@
+# ============================================================
+# robots.txt — Aarush Designer
+# ============================================================
+# Allow all search engine crawlers to index the site.
+# Disallow only admin / private areas.
+# Sitemap location specified below.
+# ============================================================
+
+User-agent: *
+Allow: /
+
+# ─── Disallow sensitive / private directories ───
+Disallow: /assets/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /logs/
+
+# ─── Disallow duplicate or thin-content pages ───
+Disallow: /?s=
+Disallow: /tag/
+Disallow: /category/
+
+# ─── Crawl-delay to be respectful to server ───
+Crawl-delay: 1
+
+# ─── Sitemap location ───
+Sitemap: https://aarushdesigner.com/sitemap.xml
+
+# ============================================================
+# Googlebot specific rules
+# ============================================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# ============================================================
+# Bingbot specific rules
+# ============================================================
+
+User-agent: bingbot
+Allow: /
+Crawl-delay: 0.5
+
+# ============================================================
+# End of robots.txt
+# ============================================================
