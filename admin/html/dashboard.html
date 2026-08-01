@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Aarush Designer Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#050505">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<!-- Shown only until Firebase confirms an authenticated session -->
+<div class="auth-loading">
+  <div class="loader__mark" style="font-size:1.4rem;">Aarush Designer</div>
+  <div class="loader__bar"></div>
+</div>
+
+<div class="admin-shell">
+
+  <aside class="admin-sidebar">
+    <div class="admin-logo">Aarush <span>Admin</span></div>
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="is-active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a href="dashboard.html#leads"><i class="fa-solid fa-address-book"></i> Lead Management</a>
+      <a href="dashboard.html#newsletter"><i class="fa-solid fa-envelope-open-text"></i> Newsletter</a>
+      <a href="#"><i class="fa-solid fa-briefcase"></i> Projects</a>
+      <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+      <a href="#"><i class="fa-solid fa-images"></i> Portfolio</a>
+      <a href="#"><i class="fa-solid fa-blog"></i> Blogs</a>
+      <a href="#"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Reports</a>
+      <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+    <button class="admin-logout" data-logout><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <div class="admin-email-chip"><i class="fa-solid fa-circle-user"></i> <span data-admin-email>—</span></div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card stat-card">
+        <div class="stat-card__label">Total Enquiries</div>
+        <div class="stat-card__value" data-stat="contacts">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-card__label">This Month</div>
+        <div class="stat-card__value" data-stat="this-month">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-card__label">Newsletter Subscribers</div>
+        <div class="stat-card__value" data-stat="newsletter">—</div>
+      </div>
+    </div>
+
+    <div class="card admin-panel" id="leads">
+      <div class="admin-panel__head">
+        <h3>Recent Enquiries</h3>
+        <span style="font-size:var(--fs-caption); color:var(--text-muted);">Latest 50</span>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th></tr></thead>
+          <tbody id="contacts-table-body">
+            <tr><td colspan="5" class="empty-row">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card admin-panel" id="newsletter">
+      <div class="admin-panel__head">
+        <h3>Newsletter Subscribers</h3>
+        <span style="font-size:var(--fs-caption); color:var(--text-muted);">Latest 50</span>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Email</th><th>Subscribed On</th></tr></thead>
+          <tbody id="newsletter-table-body">
+            <tr><td colspan="2" class="empty-row">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script type="module" src="../js/admin-auth.js"></script>
+<script type="module" src="../js/admin-dashboard.js"></script>
+</body>
+</html>
