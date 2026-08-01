@@ -21,6 +21,7 @@
   .filter-btn {
     padding: 0.6rem 1.3rem; border: 1px solid var(--border-color); border-radius: var(--radius-full);
     font-size: var(--fs-small); color: var(--text-secondary); transition: var(--transition-fast);
+    cursor: pointer; background: transparent;
   }
   .filter-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
   .filter-btn.is-active { background: #fff; color: #050505; border-color: #fff; }
@@ -40,6 +41,13 @@
     display: flex; align-items: center; gap: 0.6rem; margin-top: 1rem;
     font-size: var(--fs-caption); color: var(--text-secondary);
   }
+  .project-card__link {
+    display: inline-block; margin-top: 0.8rem;
+    font-size: var(--fs-small); color: var(--text-secondary);
+    text-decoration: none; border-bottom: 1px solid var(--border-color);
+    transition: var(--transition-fast);
+  }
+  .project-card__link:hover { color: var(--text-primary); border-color: var(--text-primary); }
   .project-card.is-hidden { display: none; }
 </style>
 </head>
@@ -79,11 +87,10 @@
   <section class="section" style="padding-top: clamp(8rem, 12vw, 10rem); padding-bottom: 2rem;">
     <div class="container">
       <div class="eyebrow" data-hero-in>Portfolio</div>
-      <h1 style="max-width: 800px;" data-hero-in>Selected work, built for results.</h1>
+      <h1 style="max-width: 800px;" data-hero-in>Real projects, real results.</h1>
       <p style="max-width: 560px; margin-top: 1.5rem; font-size: var(--fs-body-lg);" data-hero-in>
-        A look at recent projects — each one designed around a real business goal, not just a pretty layout.
+        A showcase of websites, brands, music videos and community platforms I've built — each one crafted with purpose.
       </p>
-      <p style="font-size: var(--fs-caption); color: var(--text-muted); margin-top: 1rem;">Note: project names below are illustrative examples of past work categories.</p>
     </div>
   </section>
 
@@ -93,101 +100,156 @@
 
       <div class="filter-bar" data-reveal>
         <button class="filter-btn is-active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="web">Website Design</button>
+        <button class="filter-btn" data-filter="web">Websites</button>
         <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
         <button class="filter-btn" data-filter="branding">Branding</button>
-        <button class="filter-btn" data-filter="ui">UI / Dashboard</button>
+        <button class="filter-btn" data-filter="music">Music & Video</button>
+        <button class="filter-btn" data-filter="community">Community</button>
       </div>
 
       <div class="grid grid-3" id="project-grid">
 
-        <div class="card project-card" data-category="web" data-reveal>
-          <div class="project-card__media"><i class="fa-solid fa-globe"></i></div>
-          <div class="project-card__body">
-            <span class="project-card__tag">Corporate Website</span>
-            <div class="card__title">Northpeak Traders</div>
-            <p class="card__text">A B2B corporate site rebuilt for clarity and trust, with a lead-focused homepage.</p>
-            <div class="project-card__result"><i class="fa-solid fa-arrow-trend-up"></i> Enquiries up after launch</div>
-          </div>
-        </div>
-
-        <div class="card project-card" data-category="ecommerce" data-reveal data-reveal-delay="1">
+        <!-- Thread Store - E-Commerce -->
+        <div class="card project-card" data-category="ecommerce" data-reveal>
           <div class="project-card__media"><i class="fa-solid fa-bag-shopping"></i></div>
           <div class="project-card__body">
             <span class="project-card__tag">E-Commerce</span>
-            <div class="card__title">Thread Store India</div>
-            <p class="card__text">Full online store build with payment gateway, product catalogue and fast checkout.</p>
-            <div class="project-card__result"><i class="fa-solid fa-arrow-trend-up"></i> Faster checkout flow</div>
+            <div class="card__title">Thread Store</div>
+            <p class="card__text">Online store for trendy cotton hoodies with COD, 7-day returns & seamless checkout.</p>
+            <a href="https://mydukaan.io/threadstore" target="_blank" class="project-card__link">Visit Store →</a>
+            <div class="project-card__result"><i class="fa-solid fa-arrow-trend-up"></i> ₹599 hoodies · COD available</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="branding" data-reveal data-reveal-delay="2">
-          <div class="project-card__media"><i class="fa-solid fa-signature"></i></div>
+        <!-- Himachali Tantra - Branding + Music -->
+        <div class="card project-card" data-category="branding" data-reveal data-reveal-delay="1">
+          <div class="project-card__media"><i class="fa-solid fa-music"></i></div>
+          <div class="project-card__body">
+            <span class="project-card__tag">Brand Identity + Music</span>
+            <div class="card__title">Himachali Tantra</div>
+            <p class="card__text">Complete artist brand — singer, rapper & founder. Soulful melodies with Pahadi roots.</p>
+            <a href="https://himachalitantra.github.io/ht/" target="_blank" class="project-card__link">Visit Site →</a>
+            <div class="project-card__result"><i class="fa-solid fa-headphones"></i> Romantic · Rap · Pahadi · English</div>
+          </div>
+        </div>
+
+        <!-- Fire Village Tournament - Gaming Community -->
+        <div class="card project-card" data-category="community" data-reveal data-reveal-delay="2">
+          <div class="project-card__media"><i class="fa-solid fa-gamepad"></i></div>
+          <div class="project-card__body">
+            <span class="project-card__tag">Gaming Community</span>
+            <div class="card__title">Fire Village Tournament</div>
+            <p class="card__text">India's #1 esports tournament platform — BGMI, Valorant, CODM with cash prizes.</p>
+            <a href="https://firevillagetournament.github.io/firevillage/" target="_blank" class="project-card__link">Visit Platform →</a>
+            <div class="project-card__result"><i class="fa-solid fa-trophy"></i> Tournaments · Live Broadcast · Fair Play</div>
+          </div>
+        </div>
+
+        <!-- Yatharth Tours & Travels - Travel Website -->
+        <div class="card project-card" data-category="web" data-reveal>
+          <div class="project-card__media"><i class="fa-solid fa-plane-departure"></i></div>
+          <div class="project-card__body">
+            <span class="project-card__tag">Travel Website</span>
+            <div class="card__title">Yatharth Tour & Travels</div>
+            <p class="card__text">Himalayan travel agency — custom packages, local experts & 5000+ happy travelers.</p>
+            <a href="https://yatharthtourtravels.github.io/ytt/" target="_blank" class="project-card__link">Visit Site →</a>
+            <div class="project-card__result"><i class="fa-solid fa-mountain"></i> Shimla · Manali · Kashmir · Ladakh · Nepal</div>
+          </div>
+        </div>
+
+        <!-- Chai Nagri - Branding -->
+        <div class="card project-card" data-category="branding" data-reveal data-reveal-delay="1">
+          <div class="project-card__media"><i class="fa-solid fa-mug-saucer"></i></div>
           <div class="project-card__body">
             <span class="project-card__tag">Brand Identity</span>
-            <div class="card__title">Himachali Tantra</div>
-            <p class="card__text">Complete brand identity — logo, packaging and social templates with a heritage feel.</p>
-            <div class="project-card__result"><i class="fa-solid fa-palette"></i> Full visual identity system</div>
+            <div class="card__title">Chai Nagri</div>
+            <p class="card__text">Tea brand by Aarush Sharma — where tradition meets innovation in every cup.</p>
+            <a href="https://firevillagetournament.github.io/ChaiNagri/index.html" target="_blank" class="project-card__link">Visit Site →</a>
+            <div class="project-card__result"><i class="fa-solid fa-star"></i> Masala · Adrak · Elaichi Chai</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="ui" data-reveal>
-          <div class="project-card__media"><i class="fa-solid fa-chart-line"></i></div>
+        <!-- Youth Club Chauhag - Community -->
+        <div class="card project-card" data-category="community" data-reveal data-reveal-delay="2">
+          <div class="project-card__media"><i class="fa-solid fa-hand-holding-heart"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">Dashboard Design</span>
-            <div class="card__title">Studio Linen Admin Panel</div>
-            <p class="card__text">Internal operations dashboard for order tracking, analytics and client management.</p>
-            <div class="project-card__result"><i class="fa-solid fa-gauge-high"></i> Simplified daily workflow</div>
+            <span class="project-card__tag">Community Platform</span>
+            <div class="card__title">Youth Club Chauhag</div>
+            <p class="card__text">Youth-led movement from Himachal — education, health, environment & welfare programs.</p>
+            <a href="https://youthclubchauhag.github.io/ycc/index.html" target="_blank" class="project-card__link">Visit Site →</a>
+            <div class="project-card__result"><i class="fa-solid fa-tree"></i> 150+ volunteers · 1500+ trees planted</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="web" data-reveal data-reveal-delay="1">
-          <div class="project-card__media"><i class="fa-solid fa-house-laptop"></i></div>
+        <!-- Behance Portfolio 2023 -->
+        <div class="card project-card" data-category="web" data-reveal>
+          <div class="project-card__media"><i class="fa-solid fa-pen-fancy"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">Portfolio Website</span>
-            <div class="card__title">Rawat & Co. Studio</div>
-            <p class="card__text">A minimal portfolio site built to showcase interior design projects elegantly.</p>
-            <div class="project-card__result"><i class="fa-solid fa-arrow-trend-up"></i> Improved time-on-site</div>
+            <span class="project-card__tag">Design Portfolio</span>
+            <div class="card__title">Behance Portfolio 2023</div>
+            <p class="card__text">Curated collection of design projects — websites, branding & creative work.</p>
+            <a href="https://www.behance.net/gallery/177251753/portfolio" target="_blank" class="project-card__link">View on Behance →</a>
+            <div class="project-card__result"><i class="fa-solid fa-calendar"></i> March 2023</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="branding" data-reveal data-reveal-delay="2">
-          <div class="project-card__media"><i class="fa-solid fa-ring"></i></div>
+        <!-- Brand Identity - Behance -->
+        <div class="card project-card" data-category="branding" data-reveal data-reveal-delay="1">
+          <div class="project-card__media"><i class="fa-solid fa-copyright"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">Wedding Branding</span>
-            <div class="card__title">Anaya & Vivaan Wedding</div>
-            <p class="card__text">Custom wedding branding — invites, monograms and a save-the-date microsite.</p>
-            <div class="project-card__result"><i class="fa-solid fa-heart"></i> Full event branding kit</div>
+            <span class="project-card__tag">Brand Identity</span>
+            <div class="card__title">Brand Identity System</div>
+            <p class="card__text">Complete branding projects — logos, packaging, stationery & visual identity systems.</p>
+            <a href="https://www.behance.net/gallery/177858575/Brand-Identity" target="_blank" class="project-card__link">View on Behance →</a>
+            <div class="project-card__result"><i class="fa-solid fa-palette"></i> Full visual identity systems</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="ecommerce" data-reveal>
-          <div class="project-card__media"><i class="fa-solid fa-cart-shopping"></i></div>
+        <!-- Music Video: Mohabbat Se Kam -->
+        <div class="card project-card" data-category="music" data-reveal data-reveal-delay="2">
+          <div class="project-card__media"><i class="fa-solid fa-video"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">E-Commerce + SEO</span>
-            <div class="card__title">Pahadi Organics</div>
-            <p class="card__text">Store build with local SEO setup and Google Business Profile optimization.</p>
-            <div class="project-card__result"><i class="fa-solid fa-magnifying-glass"></i> Improved local search visibility</div>
+            <span class="project-card__tag">Music Video</span>
+            <div class="card__title">Mohabbat Se Kam</div>
+            <p class="card__text">Official music video — romantic track by Aarush Sharma. Shot & edited with soulful visuals.</p>
+            <a href="https://youtu.be/1j47rXUheF0" target="_blank" class="project-card__link">Watch on YouTube →</a>
+            <div class="project-card__result"><i class="fa-solid fa-heart"></i> Romantic · Music Video</div>
           </div>
         </div>
 
-        <div class="card project-card" data-category="ui" data-reveal data-reveal-delay="1">
-          <div class="project-card__media"><i class="fa-solid fa-calendar-check"></i></div>
+        <!-- Music Video: Subah Tak -->
+        <div class="card project-card" data-category="music" data-reveal>
+          <div class="project-card__media"><i class="fa-solid fa-film"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">Booking System UI</span>
-            <div class="card__title">Vashisht Clinic Booking</div>
-            <p class="card__text">Appointment booking interface integrated with WhatsApp and email reminders.</p>
-            <div class="project-card__result"><i class="fa-solid fa-clock"></i> Reduced manual scheduling</div>
+            <span class="project-card__tag">Music Video</span>
+            <div class="card__title">Subah Tak</div>
+            <p class="card__text">Official music video — another soulful track by Aarush Sharma. Cinematic visuals & editing.</p>
+            <a href="https://youtu.be/V1wz8FLx82M" target="_blank" class="project-card__link">Watch on YouTube →</a>
+            <div class="project-card__result"><i class="fa-solid fa-music"></i> Soulful · Cinematic</div>
           </div>
         </div>
 
+        <!-- YouTube Channel -->
+        <div class="card project-card" data-category="music" data-reveal data-reveal-delay="1">
+          <div class="project-card__media"><i class="fa-brands fa-youtube"></i></div>
+          <div class="project-card__body">
+            <span class="project-card__tag">YouTube Channel</span>
+            <div class="card__title">Himachali Tantra YouTube</div>
+            <p class="card__text">Official YouTube channel — music that feels. 25K+ subscribers, 500+ videos of soulful content.</p>
+            <a href="https://www.youtube.com/@himachalitantra" target="_blank" class="project-card__link">Visit Channel →</a>
+            <div class="project-card__result"><i class="fa-solid fa-users"></i> 25.2K subscribers · 548 videos</div>
+          </div>
+        </div>
+
+        <!-- LinkedIn Profile -->
         <div class="card project-card" data-category="web" data-reveal data-reveal-delay="2">
-          <div class="project-card__media"><i class="fa-solid fa-briefcase"></i></div>
+          <div class="project-card__media"><i class="fa-brands fa-linkedin-in"></i></div>
           <div class="project-card__body">
-            <span class="project-card__tag">Business Website</span>
-            <div class="card__title">Malhotra Consulting</div>
-            <p class="card__text">Professional services site with case studies, blog and lead-capture forms.</p>
-            <div class="project-card__result"><i class="fa-solid fa-arrow-trend-up"></i> Stronger first impression</div>
+            <span class="project-card__tag">Professional Profile</span>
+            <div class="card__title">Aarush Sharma — LinkedIn</div>
+            <p class="card__text">Professional network & portfolio — website designer, UI/UX specialist & branding expert.</p>
+            <a href="https://www.linkedin.com/in/aarush-sharma-927024273/" target="_blank" class="project-card__link">Visit Profile →</a>
+            <div class="project-card__result"><i class="fa-solid fa-briefcase"></i> Designer · Strategist · Entrepreneur</div>
           </div>
         </div>
 
