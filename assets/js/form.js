@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!form) return;
 
   const successMsg = document.querySelector('#form-success');
+  const errorMsg = document.querySelector('#form-error');
   const submitBtn = form.querySelector('button[type="submit"]');
 
   const validators = {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (!isValid) return;
+    if (errorMsg) errorMsg.style.display = 'none';
 
     const originalLabel = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
@@ -59,7 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Firestore submit error:', err);
       submitBtn.textContent = originalLabel;
       submitBtn.disabled = false;
-      alert('Something went wrong sending your message. Please try WhatsApp or email instead.');
+      if (errorMsg) {
+        errorMsg.textContent = `Could not send message (${err.code || err.message}). Please try WhatsApp or email instead.`;
+        errorMsg.style.display = 'block';
+      } else {
+        alert('Something went wrong sending your message. Please try WhatsApp or email instead.');
+      }
     }
   });
 
