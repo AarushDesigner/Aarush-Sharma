@@ -308,7 +308,7 @@
                 <div class="glass" style="padding: clamp(2.5rem, 6vw, 4rem); text-align:center;" data-reveal>
                     <div class="eyebrow" style="justify-content:center;">Newsletter</div>
                     <h2 style="max-width:600px; margin-inline:auto;">One useful design or SEO tip, every month.</h2>
-                    <form style="display:flex; gap:0.8rem; max-width:420px; margin: 2rem auto 0; flex-wrap:wrap; justify-content:center;" onsubmit="event.preventDefault(); this.reset(); this.querySelector('button').textContent='Subscribed ✓';">
+                    <form id="newsletter-form" style="display:flex; gap:0.8rem; max-width:420px; margin: 2rem auto 0; flex-wrap:wrap; justify-content:center;">
                         <input type="email" required placeholder="you@example.com" style="flex:1; min-width:220px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-full); padding:0.9rem 1.3rem; color:#fff;" />
                         <button type="submit" class="btn btn-primary">Subscribe</button>
                     </form>
@@ -374,5 +374,6 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script type="module" src="assets/js/newsletter.js"></script>
 </body>
 </html>
