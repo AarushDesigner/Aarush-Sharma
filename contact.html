@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Aarush Designer</title>
+<meta name="description" content="Get in touch with Aarush Designer for your website, branding or SEO project. Free consultation available.">
+<meta name="theme-color" content="#050505">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<style>
+  .contact-method {
+    display: flex; align-items: center; gap: 1rem; padding: 1.3rem;
+    border: 1px solid var(--border-color); border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+  }
+  .contact-method:hover { border-color: var(--border-hover); background: var(--bg-card); }
+  .contact-method__icon {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+  }
+  .contact-method__label { font-size: var(--fs-caption); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .contact-method__value { font-size: var(--fs-small); color: var(--text-primary); margin-top: 2px; word-break: break-word; }
+</style>
+</head>
+<body>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__mark">Aarush Designer</div>
+  <div class="loader__bar"></div>
+</div>
+
+<div class="scroll-progress"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">Aarush <span>Designer</span></a>
+    <nav class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="is-active">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <a href="contact.html" class="btn btn-primary btn-sm">Book Free Consultation</a>
+      <button class="navbar__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= PAGE HERO ================= -->
+  <section class="section" style="padding-top: clamp(8rem, 12vw, 10rem); padding-bottom: 2rem;">
+    <div class="container">
+      <div class="eyebrow" data-hero-in>Contact</div>
+      <h1 style="max-width: 780px;" data-hero-in>Let's start the conversation.</h1>
+      <p style="max-width: 560px; margin-top: 1.5rem; font-size: var(--fs-body-lg);" data-hero-in>
+        Tell me about your business and what you're trying to achieve — I'll get back to you within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= QUICK ACTIONS ================= -->
+  <section class="section" style="padding-block: 1rem;">
+    <div class="container">
+      <div class="grid grid-4" data-reveal>
+        <a href="https://wa.me/919805871693" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+919805871693" class="btn btn-outline btn-block"><i class="fa-solid fa-phone"></i> Call</a>
+        <a href="mailto:sarush066@gmail.com" class="btn btn-outline btn-block"><i class="fa-solid fa-envelope"></i> Email</a>
+        <a href="#contact-form" class="btn btn-primary btn-block"><i class="fa-solid fa-calendar-check"></i> Book Meeting</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORM + INFO ================= -->
+  <section class="section" style="padding-top: 1.5rem;">
+    <div class="container grid grid-2" style="gap: 4rem; align-items: flex-start;">
+
+      <!-- Form -->
+      <div class="card" style="padding: 2.5rem;" data-reveal>
+        <h3 style="margin-bottom: 0.5rem;">Send a message</h3>
+        <p class="card__text" style="margin-bottom: 1.8rem;">Fill this out and I'll personally get back to you.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <div class="field__error">Please enter your name (min. 2 characters).</div>
+          </div>
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <div class="field__error">Please enter a valid email address.</div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span style="text-transform:none;">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000">
+            <div class="field__error">Please enter a valid phone number.</div>
+          </div>
+          <div class="field">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell me about your business and what you need..." required></textarea>
+            <div class="field__error">Please share a few more details (min. 10 characters).</div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        </form>
+
+        <div id="form-success" style="display:none; text-align:center; padding: 2rem 0;">
+          <i class="fa-solid fa-circle-check" style="font-size:2rem; margin-bottom:1rem;"></i>
+          <h3 style="font-size:1.3rem;">Message received</h3>
+          <p class="card__text" style="margin-top:0.5rem;">Thanks for reaching out — I'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div data-reveal data-reveal-delay="1">
+        <div class="grid" style="gap: 1rem;">
+          <div class="contact-method">
+            <div class="contact-method__icon"><i class="fa-solid fa-user"></i></div>
+            <div><div class="contact-method__label">Owner</div><div class="contact-method__value">Aarush Sharma</div></div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method__icon"><i class="fa-solid fa-phone"></i></div>
+            <div><div class="contact-method__label">Phone</div><div class="contact-method__value">+91 98058 71693</div></div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method__icon"><i class="fa-solid fa-envelope"></i></div>
+            <div><div class="contact-method__label">Personal Email</div><div class="contact-method__value">sarush066@gmail.com</div></div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method__icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div>
+              <div class="contact-method__label">Business Emails</div>
+              <div class="contact-method__value">siddta101@gmail.com</div>
+              <div class="contact-method__value">himachalitantra@gmail.com</div>
+              <div class="contact-method__value">threadstoreindia@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method__icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div><div class="contact-method__label">WhatsApp</div><div class="contact-method__value">Chat directly for a fast reply</div></div>
+          </div>
+        </div>
+
+        <div class="glass" style="margin-top: 2rem; padding: 1.6rem;">
+          <div class="flex gap-sm" style="align-items:center;">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <div style="font-weight:600; font-size: var(--fs-small);">Response Time</div>
+              <div class="card__text">Usually within a few hours, always within 24.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">Aarush Designer</div>
+        <p class="footer__desc">Designing Brands. Building Digital Success. Premium website design & branding agency by Aarush Sharma, since 2023.</p>
+        <div class="footer__social" style="margin-top:1.5rem;">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://wa.me/919805871693" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer__links">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="blog.html">Blog</a>
+        </div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <div class="footer__links">
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQ</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-conditions.html">Terms & Conditions</a>
+          <a href="refund-policy.html">Refund Policy</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer__links">
+          <a href="tel:+919805871693">+91 98058 71693</a>
+          <a href="mailto:sarush066@gmail.com">sarush066@gmail.com</a>
+          <a href="https://wa.me/919805871693">WhatsApp Chat</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Aarush Designer. All rights reserved.</span>
+      <span>Designed & built by Aarush Sharma</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919805871693" class="float-whatsapp" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/form.js"></script>
+</body>
+</html>
