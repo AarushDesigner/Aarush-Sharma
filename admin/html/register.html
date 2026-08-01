@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Register — Aarush Designer</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#050505">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <style>
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.2rem;
+            font-size: var(--fs-caption);
+            color: var(--text-muted);
+        }
+        .login-links a {
+            color: var(--text-secondary);
+            text-decoration: underline;
+            transition: color var(--transition-fast);
+        }
+        .login-links a:hover {
+            color: var(--text-primary);
+        }
+        .password-hint {
+            font-size: var(--fs-caption);
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body class="login-body">
+
+    <div class="card login-card glass">
+        <div class="login-mark">Aarush <span style="color:var(--text-muted);">Designer</span></div>
+        <div class="login-sub">Create Admin Account</div>
+
+        <div id="register-error" class="login-error"></div>
+        <div id="register-success" class="login-error" style="display:none; background:rgba(70,180,70,0.1); border-color:rgba(70,180,70,0.4); color:#9d9;"></div>
+
+        <form id="register-form" novalidate>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="admin@example.com" required autocomplete="username">
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+                <div class="password-hint">Minimum 6 characters</div>
+            </div>
+            <div class="field">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
+
+        <div class="login-links">
+            <a href="login.html">← Back to Login</a>
+            <a href="../../index.html">Back to website</a>
+        </div>
+    </div>
+
+    <script type="module" src="../js/admin-register.js"></script>
+</body>
+</html>
