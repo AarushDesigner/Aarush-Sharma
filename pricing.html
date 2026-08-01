@@ -1,246 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing — Aarush Designer</title>
-<meta name="description" content="Transparent pricing plans and monthly website management packages from Aarush Designer.">
-<meta name="theme-color" content="#050505">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing — Aarush Designer</title>
+    <meta name="description" content="Transparent pricing plans and monthly website management packages from Aarush Designer." />
+    <meta name="theme-color" content="#050505" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
 
-<style>
-  .plan-card { display: flex; flex-direction: column; }
-  .plan-card.is-featured { border-color: #fff; background: var(--bg-card-hover); position: relative; }
-  .plan-card__badge {
-    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-    background: #fff; color: #050505; font-size: var(--fs-caption);
-    padding: 0.3rem 1rem; border-radius: var(--radius-full); font-weight: 600; white-space: nowrap;
-  }
-  .plan-card__name { font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
-  .plan-card__price { font-family: var(--font-display); font-size: 2.4rem; margin: 0.6rem 0 1.4rem; }
-  .plan-card__price span { font-size: var(--fs-small); color: var(--text-muted); font-family: var(--font-body); }
-  .plan-card__features { display: flex; flex-direction: column; gap: 0.85rem; margin: 1.6rem 0 2rem; flex-grow: 1; }
-  .plan-card__features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: var(--fs-small); color: var(--text-secondary); list-style: none; }
-  .plan-card__features i { margin-top: 3px; font-size: 0.75rem; color: var(--text-primary); }
-</style>
+    <style>
+        /* ─── Pricing Page Overrides ─── */
+        .pricing-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
+        }
+        .pricing-header .eyebrow {
+            justify-content: center;
+        }
+
+        /* ─── Pricing Cards ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        @media (max-width: 1200px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .pricing-card.is-featured {
+            border-color: #ffffff;
+            background: rgba(20, 20, 20, 0.85);
+            box-shadow: 0 8px 40px rgba(255, 255, 255, 0.04);
+        }
+        .pricing-card.is-featured:hover {
+            border-color: #ffffff;
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.06);
+        }
+
+        .pricing-card__badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #050505;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-card__name {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .pricing-card__subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+            font-weight: 400;
+        }
+        .pricing-card__price {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin: 0.4rem 0 0.2rem;
+        }
+        .pricing-card__price small {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+        .pricing-card__divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 1rem 0 1.2rem;
+            width: 100%;
+        }
+
+        .pricing-card__features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 0.2rem 0 1.8rem;
+            flex-grow: 1;
+            list-style: none;
+            padding: 0;
+        }
+        .pricing-card__features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .pricing-card__features li i {
+            margin-top: 3px;
+            font-size: 0.65rem;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .pricing-card__features li .highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .pricing-card__btn {
+            width: 100%;
+            text-align: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: auto;
+        }
+        .pricing-card__btn:hover {
+            background: #ffffff;
+            color: #050505;
+            border-color: #ffffff;
+        }
+        .pricing-card__btn--primary {
+            background: #ffffff;
+            color: #050505;
+            border-color: #ffffff;
+        }
+        .pricing-card__btn--primary:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ─── Included Feature Grid ─── */
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            max-width: 1050px;
+            margin: 2rem auto 0;
+        }
+        @media (max-width: 900px) {
+            .included-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .included-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .included-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .included-item i {
+            font-size: 0.65rem;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        /* ─── Guarantee Cards ─── */
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+            max-width: 1050px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 768px) {
+            .guarantee-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .guarantee-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.4rem 1.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .guarantee-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-3px);
+        }
+        .guarantee-card i {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .guarantee-card__title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .guarantee-card__desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        /* ─── Care Plans ─── */
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .care-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .care-card {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 2.2rem 2rem;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+        .care-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .care-card.is-featured {
+            border-color: #ffffff;
+            background: rgba(20, 20, 20, 0.85);
+        }
+        .care-card__badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #050505;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .care-card__name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+        .care-card__price {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .care-card__price small {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+        .care-card__original {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-right: 0.5rem;
+        }
+        .care-card__discount {
+            font-size: 0.8rem;
+            color: #4ade80;
+            font-weight: 600;
+        }
+        .care-card__duration {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+        .care-card__features {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .care-card__features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+        .care-card__features li i {
+            margin-top: 3px;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+        .care-card__features li .fa-check {
+            color: #ffffff;
+        }
+        .care-card__features li .fa-xmark {
+            color: #ff6b6b;
+        }
+        .care-card__features .exclude {
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+        .care-card__btn {
+            width: 100%;
+            text-align: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .care-card__btn:hover {
+            background: #ffffff;
+            color: #050505;
+            border-color: #ffffff;
+        }
+        .care-card__btn--primary {
+            background: #ffffff;
+            color: #050505;
+            border-color: #ffffff;
+        }
+        .care-card__btn--primary:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ─── Bottom CTA ─── */
+        .cta-glass {
+            padding: clamp(2.5rem, 6vw, 5rem);
+            text-align: center;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.4s ease;
+        }
+        .cta-glass:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ─── Responsive fine-tune ─── */
+        @media (max-width: 640px) {
+            .pricing-card {
+                padding: 1.6rem 1.2rem;
+            }
+            .pricing-card__price {
+                font-size: 2rem;
+            }
+            .care-card {
+                padding: 1.6rem 1.2rem;
+            }
+            .guarantee-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 400px) {
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="loader" aria-hidden="true">
-  <div class="loader__mark">Aarush Designer</div>
-  <div class="loader__bar"></div>
-</div>
-
-<div class="scroll-progress"></div>
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-<header class="navbar">
-  <div class="container navbar__inner">
-    <a href="index.html" class="navbar__logo">Aarush <span>Designer</span></a>
-    <nav class="navbar__links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="pricing.html" class="is-active">Pricing</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="navbar__actions">
-      <a href="contact.html" class="btn btn-primary btn-sm">Book Free Consultation</a>
-      <button class="navbar__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <!-- ─── LOADER ─── -->
+    <div class="loader" aria-hidden="true">
+        <div class="loader__mark">Aarush Designer</div>
+        <div class="loader__bar"></div>
     </div>
-  </div>
-</header>
 
-<main>
+    <div class="scroll-progress"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
 
-  <!-- ================= PAGE HERO ================= -->
-  <section class="section" style="padding-top: clamp(8rem, 12vw, 10rem); padding-bottom: 2rem;">
-    <div class="container">
-      <div class="eyebrow" data-hero-in>Pricing</div>
-      <h1 style="max-width: 780px;" data-hero-in>Plans built around what your business actually needs.</h1>
-      <p style="max-width: 560px; margin-top: 1.5rem; font-size: var(--fs-body-lg);" data-hero-in>
-        Every project is scoped individually — here's how the plans are structured, and what's included once your site is live.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================= PROJECT PLANS ================= -->
-  <section class="section" style="padding-top: 1rem;">
-    <div class="container">
-      <div class="grid grid-4">
-
-        <div class="card plan-card" data-reveal>
-          <div class="plan-card__name">Starter</div>
-          <div class="plan-card__price">Custom <span>quote</span></div>
-          <p class="card__text">For solo founders & small businesses needing a clean, professional first website.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i>Single landing / portfolio page</li>
-            <li><i class="fa-solid fa-check"></i>Mobile responsive design</li>
-            <li><i class="fa-solid fa-check"></i>Basic on-page SEO</li>
-            <li><i class="fa-solid fa-check"></i>Contact form setup</li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline btn-block">Get Quote</a>
+    <!-- ─── NAVBAR ─── -->
+    <header class="navbar">
+        <div class="container navbar__inner">
+            <a href="index.html" class="navbar__logo">Aarush <span>Designer</span></a>
+            <nav class="navbar__links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="pricing.html" class="is-active">Pricing</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="navbar__actions">
+                <a href="contact.html" class="btn btn-primary btn-sm">Book Free Consultation</a>
+                <button class="navbar__toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
         </div>
+    </header>
 
-        <div class="card plan-card is-featured" data-reveal data-reveal-delay="1">
-          <span class="plan-card__badge">Most Popular</span>
-          <div class="plan-card__name">Professional</div>
-          <div class="plan-card__price">Custom <span>quote</span></div>
-          <p class="card__text">For growing businesses that need a multi-page site with stronger SEO & branding.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i>Multi-page business website</li>
-            <li><i class="fa-solid fa-check"></i>UI/UX design + brand touch-ups</li>
-            <li><i class="fa-solid fa-check"></i>Technical + local SEO setup</li>
-            <li><i class="fa-solid fa-check"></i>Google Analytics & Search Console</li>
-            <li><i class="fa-solid fa-check"></i>WhatsApp integration</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary btn-block">Get Quote</a>
+    <main>
+
+        <!-- ═══════════════════════════════════════════════════
+        SECTION HEADER
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-top: clamp(8rem, 12vw, 10rem); padding-bottom: 1rem;">
+            <div class="container">
+                <div class="pricing-header" data-reveal>
+                    <div class="eyebrow"><i class="fa-solid fa-tag" style="font-size:8px;"></i> Pricing</div>
+                    <h1 style="max-width: 780px; margin: 0 auto;">Plans Built Around What Your Business Actually Needs</h1>
+                    <p style="max-width: 620px; margin: 1.2rem auto 0; font-size: var(--fs-body-lg); color: var(--text-secondary);">
+                        Every business has different goals. That's why we don't believe in one-size-fits-all packages. Choose the plan that fits your business today, with room to grow tomorrow. Every website is built using premium technologies, optimized for speed, security and long-term performance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+        PRICING PLANS
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-top: 0.5rem; padding-bottom: var(--space-section);">
+            <div class="container">
+                <div class="pricing-grid">
+
+                    <!-- ─── PLAN 01: SINGLE ─── -->
+                    <div class="pricing-card" data-reveal>
+                        <div class="pricing-card__name">Single</div>
+                        <div class="pricing-card__subtitle">Perfect for Individuals &amp; Small Businesses</div>
+                        <div class="pricing-card__price">₹7,999 <small>starting</small></div>
+                        <div class="pricing-card__divider"></div>
+                        <ul class="pricing-card__features">
+                            <li><i class="fa-solid fa-check"></i>Premium Landing Page Website</li>
+                            <li><i class="fa-solid fa-check"></i>Up to 1 Page</li>
+                            <li><i class="fa-solid fa-check"></i>Premium Responsive Design</li>
+                            <li><i class="fa-solid fa-check"></i>Mobile, Tablet &amp; Desktop Optimized</li>
+                            <li><i class="fa-solid fa-check"></i>WordPress CMS</li>
+                            <li><i class="fa-solid fa-check"></i>Free .com Domain <span style="color:var(--text-muted);font-size:0.7rem;">(1 Year)</span></li>
+                            <li><i class="fa-solid fa-check"></i>Premium SSD Hosting <span style="color:var(--text-muted);font-size:0.7rem;">(1 Year)</span></li>
+                            <li><i class="fa-solid fa-check"></i>Free SSL Certificate</li>
+                            <li><i class="fa-solid fa-check"></i>Free CDN</li>
+                            <li><i class="fa-solid fa-check"></i>DNS Management</li>
+                            <li><i class="fa-solid fa-check"></i>WP-CLI &amp; SSH Access</li>
+                            <li><i class="fa-solid fa-check"></i>Contact Form</li>
+                            <li><i class="fa-solid fa-check"></i>WhatsApp Integration</li>
+                            <li><i class="fa-solid fa-check"></i>Google Maps</li>
+                            <li><i class="fa-solid fa-check"></i>Basic On-Page SEO</li>
+                            <li><i class="fa-solid fa-check"></i>Google Search Console</li>
+                            <li><i class="fa-solid fa-check"></i>Google Analytics</li>
+                            <li><i class="fa-solid fa-check"></i>Speed Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Image Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Security Setup</li>
+                            <li><i class="fa-solid fa-check"></i>Spam Protection</li>
+                            <li><i class="fa-solid fa-check"></i>Social Media Integration</li>
+                            <li><i class="fa-solid fa-check"></i>30 Days Technical Support</li>
+                        </ul>
+                        <a href="contact.html" class="pricing-card__btn">Get Free Quote</a>
+                    </div>
+
+                    <!-- ─── PLAN 02: PREMIUM (MOST POPULAR) ─── -->
+                    <div class="pricing-card is-featured" data-reveal data-reveal-delay="1">
+                        <span class="pricing-card__badge">Most Popular</span>
+                        <div class="pricing-card__name">Premium</div>
+                        <div class="pricing-card__subtitle">Best for Growing Businesses</div>
+                        <div class="pricing-card__price">₹14,999 <small>starting</small></div>
+                        <div class="pricing-card__divider"></div>
+                        <ul class="pricing-card__features">
+                            <li><i class="fa-solid fa-check"></i><span class="highlight">Everything in Single +</span></li>
+                            <li><i class="fa-solid fa-check"></i>Up to 10 Premium Pages</li>
+                            <li><i class="fa-solid fa-check"></i>Fully Custom UI/UX</li>
+                            <li><i class="fa-solid fa-check"></i>Professional Brand Styling</li>
+                            <li><i class="fa-solid fa-check"></i>Premium Animations</li>
+                            <li><i class="fa-solid fa-check"></i>Blog Setup</li>
+                            <li><i class="fa-solid fa-check"></i>Portfolio Section</li>
+                            <li><i class="fa-solid fa-check"></i>Testimonials</li>
+                            <li><i class="fa-solid fa-check"></i>Gallery</li>
+                            <li><i class="fa-solid fa-check"></i>Advanced Contact Forms</li>
+                            <li><i class="fa-solid fa-check"></i>Local SEO Setup</li>
+                            <li><i class="fa-solid fa-check"></i>Technical SEO</li>
+                            <li><i class="fa-solid fa-check"></i>Schema Markup</li>
+                            <li><i class="fa-solid fa-check"></i>XML Sitemap</li>
+                            <li><i class="fa-solid fa-check"></i>Google Business Integration</li>
+                            <li><i class="fa-solid fa-check"></i>Speed Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Daily Security Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Weekly Backup</li>
+                            <li><i class="fa-solid fa-check"></i>Performance Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>60 Days Premium Support</li>
+                        </ul>
+                        <a href="contact.html" class="pricing-card__btn pricing-card__btn--primary">Start Premium</a>
+                    </div>
+
+                    <!-- ─── PLAN 03: BUSINESS ─── -->
+                    <div class="pricing-card" data-reveal data-reveal-delay="2">
+                        <div class="pricing-card__name">Business</div>
+                        <div class="pricing-card__subtitle">Perfect for Companies &amp; Online Businesses</div>
+                        <div class="pricing-card__price">₹24,999 <small>starting</small></div>
+                        <div class="pricing-card__divider"></div>
+                        <ul class="pricing-card__features">
+                            <li><i class="fa-solid fa-check"></i><span class="highlight">Everything in Premium +</span></li>
+                            <li><i class="fa-solid fa-check"></i>Unlimited Pages</li>
+                            <li><i class="fa-solid fa-check"></i>Ecommerce Website</li>
+                            <li><i class="fa-solid fa-check"></i>Online Store</li>
+                            <li><i class="fa-solid fa-check"></i>Booking System</li>
+                            <li><i class="fa-solid fa-check"></i>Payment Gateway Integration</li>
+                            <li><i class="fa-solid fa-check"></i>User Login System</li>
+                            <li><i class="fa-solid fa-check"></i>Customer Dashboard</li>
+                            <li><i class="fa-solid fa-check"></i>Admin Panel</li>
+                            <li><i class="fa-solid fa-check"></i>Product Management</li>
+                            <li><i class="fa-solid fa-check"></i>Order Management</li>
+                            <li><i class="fa-solid fa-check"></i>Inventory Management</li>
+                            <li><i class="fa-solid fa-check"></i>Blog Management</li>
+                            <li><i class="fa-solid fa-check"></i>Email Configuration</li>
+                            <li><i class="fa-solid fa-check"></i>Advanced SEO</li>
+                            <li><i class="fa-solid fa-check"></i>Google Analytics 4</li>
+                            <li><i class="fa-solid fa-check"></i>Facebook Pixel</li>
+                            <li><i class="fa-solid fa-check"></i>Conversion Tracking</li>
+                            <li><i class="fa-solid fa-check"></i>Speed Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Advanced Firewall Security</li>
+                            <li><i class="fa-solid fa-check"></i>Malware Protection</li>
+                            <li><i class="fa-solid fa-check"></i>Daily Backup</li>
+                            <li><i class="fa-solid fa-check"></i>Priority Technical Support</li>
+                        </ul>
+                        <a href="contact.html" class="pricing-card__btn">Grow Business</a>
+                    </div>
+
+                    <!-- ─── PLAN 04: CLOUD ─── -->
+                    <div class="pricing-card" data-reveal data-reveal-delay="3">
+                        <div class="pricing-card__name">Cloud</div>
+                        <div class="pricing-card__subtitle">Enterprise-Level Solution</div>
+                        <div class="pricing-card__price">Custom <small>quote</small></div>
+                        <div class="pricing-card__divider"></div>
+                        <ul class="pricing-card__features">
+                            <li><i class="fa-solid fa-check"></i><span class="highlight">Everything in Business +</span></li>
+                            <li><i class="fa-solid fa-check"></i>Custom Web Application</li>
+                            <li><i class="fa-solid fa-check"></i>Cloud Infrastructure</li>
+                            <li><i class="fa-solid fa-check"></i>VPS / Cloud Hosting</li>
+                            <li><i class="fa-solid fa-check"></i>Dedicated Server Setup</li>
+                            <li><i class="fa-solid fa-check"></i>CRM Integration</li>
+                            <li><i class="fa-solid fa-check"></i>ERP Integration</li>
+                            <li><i class="fa-solid fa-check"></i>API Development</li>
+                            <li><i class="fa-solid fa-check"></i>Multi User Dashboard</li>
+                            <li><i class="fa-solid fa-check"></i>Custom Database</li>
+                            <li><i class="fa-solid fa-check"></i>Custom Admin Panel</li>
+                            <li><i class="fa-solid fa-check"></i>Load Balancer</li>
+                            <li><i class="fa-solid fa-check"></i>Auto Scaling</li>
+                            <li><i class="fa-solid fa-check"></i>Advanced Cloud Security</li>
+                            <li><i class="fa-solid fa-check"></i>Daily Cloud Backup</li>
+                            <li><i class="fa-solid fa-check"></i>Performance Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Server Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Enterprise SEO</li>
+                            <li><i class="fa-solid fa-check"></i>Dedicated Account Manager</li>
+                            <li><i class="fa-solid fa-check"></i>Priority WhatsApp Support</li>
+                            <li><i class="fa-solid fa-check"></i>24×7 Premium Customer Support</li>
+                        </ul>
+                        <a href="contact.html" class="pricing-card__btn">Book Consultation</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+        EVERY WEBSITE INCLUDES
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-block: 2rem 4rem; background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-head center" data-reveal>
+                    <div class="eyebrow" style="justify-content:center;">Included</div>
+                    <h2 style="max-width: 700px; margin: 0 auto;">Everything Included — No Hidden Charges</h2>
+                </div>
+                <div class="included-grid" data-reveal>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Free .com Domain <span style="color:var(--text-muted);font-size:0.65rem;">(1 Year)</span></div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Premium SSD Hosting</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Free SSL Certificate</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Free CDN</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> WordPress CMS</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> WP-CLI &amp; SSH</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> DNS Management</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Premium Responsive Design</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Mobile Friendly</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Fast Loading</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> SEO Ready</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Google Friendly Structure</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Speed Optimization</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Image Optimization</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Google Search Console</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Google Analytics</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Security Monitoring</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Malware Protection</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Weekly Backup</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Performance Optimization</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> Technical Support</div>
+                    <div class="included-item"><i class="fa-solid fa-check"></i> 24×7 Customer Support</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+        OUR GUARANTEE
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-block: 4rem;">
+            <div class="container">
+                <div class="section-head center" data-reveal>
+                    <div class="eyebrow" style="justify-content:center;">Our Guarantee</div>
+                    <h2 style="max-width: 600px; margin: 0 auto;">Your Business Is Safe With Us</h2>
+                </div>
+                <div class="guarantee-grid" data-reveal>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-lock"></i>
+                        <div class="guarantee-card__title">100% Secure Infrastructure</div>
+                        <div class="guarantee-card__desc">Enterprise-grade security from day one</div>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="guarantee-card__title">Free SSL Security</div>
+                        <div class="guarantee-card__desc">Encrypted connection for every visitor</div>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-cloud"></i>
+                        <div class="guarantee-card__title">Premium Cloud Hosting</div>
+                        <div class="guarantee-card__desc">High-availability infrastructure</div>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <div class="guarantee-card__title">High-Speed SSD Servers</div>
+                        <div class="guarantee-card__desc">Lightning-fast load times globally</div>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-user-secret"></i>
+                        <div class="guarantee-card__title">We Never Share Your Personal Data</div>
+                        <div class="guarantee-card__desc">Your privacy is our priority</div>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                        <div class="guarantee-card__title">Money Back Guarantee</div>
+                        <div class="guarantee-card__desc">100% risk-free — see our policy</div>
+                    </div>
+                </div>
+                <p style="max-width: 680px; margin: 2rem auto 0; font-size: var(--fs-small); color: var(--text-muted); text-align: center; line-height: 1.7;">
+                    Your personal and business information is always protected using industry-standard security practices. We never sell, share or expose client information. If any personal data is leaked due to our company's negligence, we offer a <strong style="color:var(--text-primary);">Money Back Guarantee</strong> according to our privacy policy.
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+        AFTER LAUNCH WEBSITE MANAGEMENT
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-block: 4rem; background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-head center" data-reveal>
+                    <div class="eyebrow" style="justify-content:center;">After Launch</div>
+                    <h2 style="max-width: 700px; margin: 0 auto;">Keep Your Website Growing After Launch</h2>
+                    <p style="max-width: 580px; margin: 1rem auto 0; color: var(--text-secondary);">
+                        Launching your website is just the beginning. Our Website Care Plans keep your website secure, updated, optimized and growing every month.
+                    </p>
+                </div>
+
+                <div class="care-grid">
+
+                    <!-- ─── PREMIUM CARE PLAN ─── -->
+                    <div class="care-card is-featured" data-reveal>
+                        <span class="care-card__badge">Best Value</span>
+                        <div class="care-card__name">Premium Care Plan</div>
+                        <div>
+                            <span class="care-card__original">₹25,000</span>
+                            <span class="care-card__discount">₹10,000 OFF</span>
+                        </div>
+                        <div class="care-card__price">₹15,000 <small>/ 2 Months</small></div>
+                        <div class="care-card__duration">Duration: 2 Months</div>
+                        <ul class="care-card__features">
+                            <li><i class="fa-solid fa-check"></i>Website Management</li>
+                            <li><i class="fa-solid fa-check"></i>Unlimited Content Updates</li>
+                            <li><i class="fa-solid fa-check"></i>Technical Support</li>
+                            <li><i class="fa-solid fa-check"></i>Weekly Backup</li>
+                            <li><i class="fa-solid fa-check"></i>Security Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Daily SEO Improvement</li>
+                            <li><i class="fa-solid fa-check"></i>Google Ranking Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Speed Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Bug Fixes</li>
+                            <li><i class="fa-solid fa-check"></i>Meta Ads Management</li>
+                            <li><i class="fa-solid fa-check"></i>Google Ads Management</li>
+                            <li><i class="fa-solid fa-check"></i>Daily Social Media Post</li>
+                            <li><i class="fa-solid fa-check"></i>Performance Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Monthly Report</li>
+                            <li><i class="fa-solid fa-check"></i>Priority WhatsApp Support</li>
+                        </ul>
+                        <a href="contact.html" class="care-card__btn care-card__btn--primary">Subscribe Now</a>
+                    </div>
+
+                    <!-- ─── STANDARD CARE PLAN ─── -->
+                    <div class="care-card" data-reveal data-reveal-delay="1">
+                        <div class="care-card__name">Standard Care Plan</div>
+                        <div>
+                            <span class="care-card__original">₹10,500</span>
+                            <span class="care-card__discount">₹3,000 OFF</span>
+                        </div>
+                        <div class="care-card__price">₹7,500 <small>/ 1 Month</small></div>
+                        <div class="care-card__duration">Duration: 1 Month</div>
+                        <ul class="care-card__features">
+                            <li><i class="fa-solid fa-check"></i>Website Management</li>
+                            <li><i class="fa-solid fa-check"></i>Website Updates</li>
+                            <li><i class="fa-solid fa-check"></i>Weekly Backup</li>
+                            <li><i class="fa-solid fa-check"></i>SEO Improvement</li>
+                            <li><i class="fa-solid fa-check"></i>Speed Optimization</li>
+                            <li><i class="fa-solid fa-check"></i>Security Monitoring</li>
+                            <li><i class="fa-solid fa-check"></i>Technical Support</li>
+                            <li><i class="fa-solid fa-check"></i>One Social Media Post Every 5 Days</li>
+                            <li><i class="fa-solid fa-check"></i>Monthly Report</li>
+                            <li><i class="fa-solid fa-xmark exclude"></i> <span class="exclude">Meta Ads</span></li>
+                            <li><i class="fa-solid fa-xmark exclude"></i> <span class="exclude">Google Ads</span></li>
+                            <li><i class="fa-solid fa-xmark exclude"></i> <span class="exclude">Daily Social Media Posts</span></li>
+                        </ul>
+                        <a href="contact.html" class="care-card__btn">Choose Plan</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+        BOTTOM CTA
+        ════════════════════════════════════════════════════ -->
+        <section class="section" style="padding-block: 5rem;">
+            <div class="container">
+                <div class="cta-glass" data-reveal>
+                    <h2 style="max-width: 700px; margin: 0 auto;">Still Not Sure Which Plan Fits Your Business?</h2>
+                    <p style="max-width: 560px; margin: 1.2rem auto 0; color: var(--text-secondary);">
+                        Book a free consultation with our experts. We'll recommend the perfect solution based on your business goals, budget and future growth—without any hidden costs or unnecessary upselling.
+                    </p>
+                    <div class="flex-center gap-sm" style="margin-top: 2.2rem; flex-wrap: wrap;">
+                        <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
+                        <a href="https://wa.me/919805871693" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════
+    FOOTER
+    ════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <div class="footer__brand">Aarush Designer</div>
+                    <p class="footer__desc">Designing Brands. Building Digital Success. Premium website design &amp; branding agency by Aarush Sharma, since 2023.</p>
+                    <div class="footer__social" style="margin-top:1.5rem;">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/919805871693" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <div class="footer__links">
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="portfolio.html">Portfolio</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="blog.html">Blog</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <div class="footer__links">
+                        <a href="contact.html">Contact</a>
+                        <a href="faq.html">FAQ</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+                        <a href="refund-policy.html">Refund Policy</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <div class="footer__links">
+                        <a href="tel:+919805871693">+91 98058 71693</a>
+                        <a href="mailto:sarush066@gmail.com">sarush066@gmail.com</a>
+                        <a href="https://wa.me/919805871693">WhatsApp Chat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2026 Aarush Designer. All rights reserved.</span>
+                <span>Designed &amp; built by Aarush Sharma</span>
+            </div>
         </div>
+    </footer>
 
-        <div class="card plan-card" data-reveal data-reveal-delay="2">
-          <div class="plan-card__name">Business</div>
-          <div class="plan-card__price">Custom <span>quote</span></div>
-          <p class="card__text">For businesses selling online or managing bookings, payments and content.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i>E-commerce or booking website</li>
-            <li><i class="fa-solid fa-check"></i>Payment gateway integration</li>
-            <li><i class="fa-solid fa-check"></i>Blog & content setup</li>
-            <li><i class="fa-solid fa-check"></i>Full brand identity system</li>
-            <li><i class="fa-solid fa-check"></i>Priority support</li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline btn-block">Get Quote</a>
-        </div>
+    <a href="https://wa.me/919805871693" class="float-whatsapp" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-        <div class="card plan-card" data-reveal>
-          <div class="plan-card__name">Enterprise</div>
-          <div class="plan-card__price">Custom <span>quote</span></div>
-          <p class="card__text">For larger operations needing custom dashboards, CRM and infrastructure.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i>Custom dashboard / admin panel</li>
-            <li><i class="fa-solid fa-check"></i>CRM & third-party integrations</li>
-            <li><i class="fa-solid fa-check"></i>Cloud hosting & migration</li>
-            <li><i class="fa-solid fa-check"></i>Dedicated ongoing support</li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline btn-block">Get Quote</a>
-        </div>
-
-      </div>
-      <p style="text-align:center; margin-top: 2rem; font-size: var(--fs-small);">Every plan is scoped to your project after a free consultation — no fixed packages, no hidden costs.</p>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ================= MONTHLY MANAGEMENT ================= -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head center" data-reveal>
-        <div class="eyebrow" style="justify-content:center;">After Launch</div>
-        <h2>Monthly Website Management</h2>
-      </div>
-
-      <div class="grid grid-2" style="max-width: 900px; margin-inline:auto; align-items: center; gap: 3rem;">
-        <div class="glass" style="padding: 2.5rem; text-align:center;" data-reveal>
-          <div class="plan-card__name">Monthly Plan</div>
-          <div style="font-family:var(--font-display); font-size: 3rem; margin: 0.8rem 0;">₹5,000<span style="font-size:1rem; color:var(--text-muted); font-family:var(--font-body);">/month</span></div>
-          <p class="card__text">Keeps your website updated, secure and performing — every month, without you lifting a finger.</p>
-          <a href="contact.html" class="btn btn-primary btn-block" style="margin-top: 1.6rem;">Subscribe</a>
-        </div>
-        <div data-reveal data-reveal-delay="1">
-          <ul class="plan-card__features" style="margin: 0;">
-            <li><i class="fa-solid fa-check"></i>Website content updates</li>
-            <li><i class="fa-solid fa-check"></i>Weekly backup</li>
-            <li><i class="fa-solid fa-check"></i>Website security monitoring</li>
-            <li><i class="fa-solid fa-check"></i>Speed optimization</li>
-            <li><i class="fa-solid fa-check"></i>SEO monitoring</li>
-            <li><i class="fa-solid fa-check"></i>Monthly performance report</li>
-            <li><i class="fa-solid fa-check"></i>Priority + WhatsApp support</li>
-            <li><i class="fa-solid fa-check"></i>Technical support included</li>
-          </ul>
-          <p style="margin-top: 1.4rem; font-size: var(--fs-small);">Need extra changes beyond the plan? Additional updates are <strong style="color:var(--text-primary);">₹1,000 per update</strong>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CTA ================= -->
-  <section class="section">
-    <div class="container">
-      <div class="glass" style="padding: clamp(2.5rem, 6vw, 5rem); text-align:center;" data-reveal>
-        <h2 style="max-width:700px; margin-inline:auto;">Still deciding which plan fits?</h2>
-        <p style="max-width:480px; margin: 1.2rem auto 0;">Book a free consultation — I'll help you pick the right scope before you spend a rupee.</p>
-        <div class="flex-center gap-sm" style="margin-top: 2.2rem; flex-wrap:wrap;">
-          <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__brand">Aarush Designer</div>
-        <p class="footer__desc">Designing Brands. Building Digital Success. Premium website design & branding agency by Aarush Sharma, since 2023.</p>
-        <div class="footer__social" style="margin-top:1.5rem;">
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://wa.me/919805871693" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="footer__links">
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="blog.html">Blog</a>
-        </div>
-      </div>
-      <div>
-        <h4>Support</h4>
-        <div class="footer__links">
-          <a href="contact.html">Contact</a>
-          <a href="faq.html">FAQ</a>
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-conditions.html">Terms & Conditions</a>
-          <a href="refund-policy.html">Refund Policy</a>
-        </div>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <div class="footer__links">
-          <a href="tel:+919805871693">+91 98058 71693</a>
-          <a href="mailto:sarush066@gmail.com">sarush066@gmail.com</a>
-          <a href="https://wa.me/919805871693">WhatsApp Chat</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>© 2026 Aarush Designer. All rights reserved.</span>
-      <span>Designed & built by Aarush Sharma</span>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/919805871693" class="float-whatsapp" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/animations.js"></script>
+    <!-- ─── SCRIPTS ─── -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
 </body>
 </html>
